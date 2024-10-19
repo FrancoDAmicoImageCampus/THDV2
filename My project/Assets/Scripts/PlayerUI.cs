@@ -16,7 +16,7 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        scoreNumber = 100; // Inicializa el puntaje en 100
+        scoreNumber = 300; // Inicializa el puntaje en 100
         UpdateScoreText(); // Actualiza el texto al inicio
         Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor al inicio
         Cursor.visible = false; // Oculta el cursor al inicio
@@ -60,7 +60,12 @@ public class PlayerUI : MonoBehaviour
         Cursor.visible = isInPause; // El cursor es visible si está en pausa
         Cursor.lockState = isInPause ? CursorLockMode.None : CursorLockMode.Locked; // Desbloquea o bloquea el cursor
     }
-
+    //public void Resumir()
+   // {
+     //   pauseMenu.SetActive(false); 
+     //   Time.timeScale = 1f;      
+        //isInPause = false;
+   // }
     public void IncreaseScore(int amount)
     {
         scoreNumber += amount; // Aumenta el puntaje
@@ -69,6 +74,6 @@ public class PlayerUI : MonoBehaviour
 
     private void UpdateScoreText()
     {
-        textObject.text = "Score: " + scoreNumber; // Muestra el puntaje
+        textObject.text = "Salud: " + scoreNumber; // Muestra el puntaje
     }
 }
