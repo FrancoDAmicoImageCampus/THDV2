@@ -10,12 +10,13 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private MonoBehaviour firstPersonMovement; // Referencia al script de movimiento
     [SerializeField] private CharacterController characterController; // Referencia al CharacterController
     [SerializeField] private MonoBehaviour cameraController; // Referencia al script de control de la cámara
-    private int scoreNumber; // Inicializa scoreNumber
+    [SerializeField] private ScoreData scoreData; // Referencia al Scriptable Object que almacena el puntaje
 
     private bool isInPause = false;
+
     private void Start()
     {
-        scoreNumber = 300; // Inicializa el puntaje en 300
+        //scoreData.scoreNumber = 300; // Inicializa el puntaje en 300
         UpdateScoreText(); // Actualiza el texto al inicio
         Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor al inicio
         Cursor.visible = false; // Oculta el cursor al inicio
@@ -59,22 +60,15 @@ public class PlayerUI : MonoBehaviour
         Cursor.visible = isInPause; // El cursor es visible si está en pausa
         Cursor.lockState = isInPause ? CursorLockMode.None : CursorLockMode.Locked; // Desbloquea o bloquea el cursor
     }
-    //public void Resumir()
-   // {
-     //   pauseMenu.SetActive(false); 
-     //   Time.timeScale = 1f;      
-        //isInPause = false;
-   // }
+
     public void IncreaseScore(int amount)
     {
-        scoreNumber += amount; // Aumenta el puntaje
+        scoreData.scoreNumber += amount; // Aumenta el puntaje
         UpdateScoreText(); // Actualiza el texto
     }
 
     private void UpdateScoreText()
     {
-        textObject.text = "Salud: " + scoreNumber; // Muestra el puntaje
+        textObject.text = "Salud: " + scoreData.scoreNumber; // Muestra el puntaje
     }
-
-
 }

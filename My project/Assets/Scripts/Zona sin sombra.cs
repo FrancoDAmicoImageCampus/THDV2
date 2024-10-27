@@ -5,7 +5,7 @@ using TMPro;
 public class ZonaSinSombra : MonoBehaviour
 {
     [SerializeField] private TMP_Text textObject; // Asigna esto en el Inspector
-    private static int playerScore = 300; // Salud inicial del jugador
+    [SerializeField] private ScoreData scoreData; // Referencia al Scriptable Object que almacena el puntaje
     private bool isInZone = false; // Verifica si está en la zona
 
     private void Start()
@@ -34,9 +34,14 @@ public class ZonaSinSombra : MonoBehaviour
         }
     }
 
+
+
+
+
+
     private IEnumerator DecreaseScoreCoroutine()
     {
-        while (isInZone && playerScore > 0)
+        while (isInZone && scoreData.scoreNumber > 0)
         {
             yield return new WaitForSeconds(1f); // Espera un segundo
             DecreaseScore(); // Reduce la salud
@@ -46,15 +51,15 @@ public class ZonaSinSombra : MonoBehaviour
 
     private void DecreaseScore()
     {
-        if (playerScore > 0)
+        if (scoreData.scoreNumber > 0)
         {
-            playerScore--; // Reduce la salud
-            Debug.Log("Salud reducida: " + playerScore); // Mensaje de depuración
+            scoreData.scoreNumber--; // Reduce la salud
+            Debug.Log("Salud reducida: " + scoreData.scoreNumber); // Mensaje de depuración
         }
     }
 
     private void UpdateHealthDisplay()
     {
-        textObject.text = "Salud: " + playerScore; // Actualiza el texto
+        textObject.text = "Salud: " + scoreData.scoreNumber; // Actualiza el texto
     }
 }
