@@ -10,6 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb1bedd7db53e68409e4dc8a71e599a2, type: 3}
-  m_Name: ScoreData
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  scoreNumber: 67967
+  speed: 5
+  canRun: 1
+  runSpeed: 30
+  runningKey: 304
+  StartHealth: 999

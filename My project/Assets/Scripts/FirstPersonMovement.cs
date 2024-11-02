@@ -4,13 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class FirstPersonMovement : MonoBehaviour
 {
-    public float speed = 5;
-
+    [SerializeField] private ScoreData scoreData; 
     [Header("Running")]
-    public bool canRun = true;
-    public bool IsRunning { get; private set; }
-    public float runSpeed = 9;
-    public KeyCode runningKey = KeyCode.LeftShift;
     [SerializeField] private GameObject vampiro;
     [SerializeField] private GameObject murcielago;
     private Vector3 playerposition;
@@ -63,10 +58,10 @@ public class FirstPersonMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Update IsRunning from input.
-        IsRunning = canRun && Input.GetKey(runningKey);
+        scoreData.IsRunning =  scoreData.canRun && Input.GetKey(scoreData.runningKey);
 
         // Get targetMovingSpeed.
-        float targetMovingSpeed = IsRunning ? runSpeed : speed;
+        float targetMovingSpeed =  scoreData.IsRunning ?  scoreData.runSpeed :  scoreData.speed;
         if (speedOverrides.Count > 0)
         {
             targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
