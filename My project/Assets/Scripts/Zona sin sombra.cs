@@ -11,12 +11,10 @@ public class ZonaSinSombra : MonoBehaviour
     
     private void Awake()
     {
-        scoreNumber = scoreData.StartHealth;       
+        scoreNumber = scoreData.StartHealth;   
+        UpdateHealthDisplay();
     }
-    private void Start()
-    {
-        UpdateHealthDisplay(); 
-    }
+   
 
     private void OnTriggerEnter(Collider other)
     {
