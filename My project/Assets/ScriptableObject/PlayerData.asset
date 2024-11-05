@@ -16,4 +16,4 @@ MonoBehaviour:
   canRun: 1
   runSpeed: 40
   runningKey: 304
-  StartHealth: 99
+  StartHealth: 100

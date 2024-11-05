@@ -4,26 +4,23 @@ using TMPro;
 
 public class ZonaSinSombra : MonoBehaviour
 {
-    public float scoreNumber;
+    public float damageAmount = 1f; // Cantidad de daño por segundo
     [SerializeField] private TMP_Text textObject; 
-    [SerializeField] private ScoreData scoreData; 
     private bool isInZone = false; 
-    
+    private FirstPersonMovement player; // Referencia al script del jugador
+
     private void Awake()
     {
-        scoreNumber = scoreData.StartHealth;   
-        UpdateHealthDisplay();
+        player = FindObjectOfType<FirstPersonMovement>(); // Busca el componente FirstPersonMovement en la escena
+        UpdateHealthDisplay(); // Inicializa la visualización de salud
     }
-   
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Objetos en colisión: " + other.gameObject.name); 
         if (other.CompareTag("Player")) 
         {
             isInZone = true; 
-            Debug.Log("Entró en la zona"); 
-            StartCoroutine(DecreaseScoreCoroutine()); 
+            StartCoroutine(DecreaseHealthCoroutine()); 
         }
     }
 
@@ -32,37 +29,24 @@ public class ZonaSinSombra : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInZone = false; 
-            Debug.Log("Salió de la zona"); 
             StopAllCoroutines(); 
         }
     }
 
-
-
-
-
-
-    private IEnumerator DecreaseScoreCoroutine()
+    private IEnumerator DecreaseHealthCoroutine()
     {
-        while (isInZone && scoreNumber > 0)
+        while (isInZone)
         {
             yield return new WaitForSeconds(1f); 
-            DecreaseScore(); 
-            UpdateHealthDisplay(); 
-        }
-    }
-
-    private void DecreaseScore()
-    {
-        if (scoreNumber > 0)
-        {
-            scoreNumber--; 
-            Debug.Log("Salud reducida: " + scoreNumber); 
+            player.TakeDamage(damageAmount); // Llama al método de daño del jugador
+            UpdateHealthDisplay(); // Actualiza la visualización de salud
         }
     }
 
     private void UpdateHealthDisplay()
     {
-        textObject.text = "Salud: " + scoreNumber; 
+        // Aquí asumimos que 'player' tiene un método para obtener la salud actual
+        float currentHealth = player.GetCurrentHealth(); // Asegúrate de que este método exista
+        textObject.text = "Salud: " + currentHealth; // Actualiza el texto en el UI
     }
 }

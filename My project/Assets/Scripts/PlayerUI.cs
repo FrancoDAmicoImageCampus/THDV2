@@ -11,7 +11,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private MonoBehaviour firstPersonMovement; 
     [SerializeField] private CharacterController characterController; 
     [SerializeField] private MonoBehaviour cameraController; 
-    [SerializeField] private ScoreData scoreData; 
+    [SerializeField] private PlayerData playerData; 
 
     private bool isInPause = false;
 
