@@ -32,10 +32,10 @@ public class PlayerUI : MonoBehaviour
         }
 
         
-        if (!isInPause && Input.GetKeyDown(KeyCode.E))
-        {
-            IncreaseScore(1); 
-        }
+       // if (!isInPause && Input.GetKeyDown(KeyCode.E))
+        //{
+        //    IncreaseScore(1); 
+       // }
     }
 
     private void TogglePause()

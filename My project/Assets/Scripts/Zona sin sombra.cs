@@ -37,7 +37,7 @@ public class ZonaSinSombra : MonoBehaviour
     {
         while (isInZone)
         {
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(0.1f); 
             player.TakeDamage(damageAmount); // Llama al método de daño del jugador
             UpdateHealthDisplay(); // Actualiza la visualización de salud
         }
